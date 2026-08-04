@@ -1,0 +1,17 @@
+{
+	"name": "Fact",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL TABLE gold.FactTable\nWITH\n(\n    LOCATION='FactOrders',\n    DATA_SOURCE=gold,\n    FILE_FORMAT=parquet_format\n)\nAS\nSELECT\n    O.DimOrdersKey,\n    C.DimCustomerKey,\n    P.DimProductKey,\n    G.DimGeoKey,\n    F.Quantity,\n    F.UnitPrice,\n    F.TotalAmount\nFROM silver.SilverTable AS F\n\nLEFT JOIN gold.dimorders AS O\n    ON F.OrderID = O.OrderID\n\nLEFT JOIN gold.dimcustomer AS C\n    ON F.CustomerID = C.CustomerID\n\nLEFT JOIN gold.dimproduct AS P\n    ON F.ProductID = P.ProductID\n\nLEFT JOIN gold.dimgeo AS G\n    ON F.RegionID = G.RegionID\n   AND F.Country = G.Country;",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SalesDWH",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "Ds_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "orderday1.parquet",
+				"folderPath": "Sales",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

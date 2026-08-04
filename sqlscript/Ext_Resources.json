@@ -1,0 +1,17 @@
+{
+	"name": "Ext_Resources",
+	"properties": {
+		"content": {
+			"query": "\nCREATE MASTER KEY\nENCRYPTION BY PASSWORD = 'Password';\n\n-----------------------------\n--DATABASE SCOPED CREDENTIALS\n------------------------------\nCREATE DATABASE SCOPED CREDENTIAL aditi_creds\nWITH IDENTITY = 'Managed Identity'\n\n-----------------------------\n--EXTERNAL DATA SOURCE\n-----------------------------\n\nCREATE EXTERNAL DATA SOURCE silver_source\nWITH\n(\n   LOCATION ='https://azuresynapseaditi.dfs.core.windows.net/silver/',\n   CREDENTIAL=aditi_creds\n)\nCREATE EXTERNAL DATA SOURCE gold\nWITH\n(\n   LOCATION ='https://azuresynapseaditi.dfs.core.windows.net/gold/',\n   CREDENTIAL=aditi_creds\n)\n\n--------------------------------------\n---EXTERNAL FILE FORMAT\n--------------------------------------\nCREATE EXTERNAL FILE FORMAT parquet_format\nWITH\n(\n   FORMAT_TYPE=PARQUET,\n   DATA_COMPRESSION='org.apache.hadoop.io.compress.SnappyCodec'\n\n)\nCREATE EXTERNAL FILE FORMAT delta\nWITH\n(\n   FORMAT_TYPE=DELTA,\n   )\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "SalesDWH",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "Ds_Parquet_Bronze",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Sales",
+				"fileSystem": "bronze"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}
